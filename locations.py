@@ -130,4 +130,6 @@ def cityStates(locations, cities):
         
         city_dict[city].add(location.state)
     
+    # Get corresponding states in order of cities,
+    # and return them sorted and separated by a space
     return [" ".join(sorted(list(city_dict[city]))) for city in cities]
