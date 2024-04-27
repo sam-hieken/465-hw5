@@ -91,6 +91,9 @@ def commonCityNames(locations, states):
     # Return common cities in a sorted list
     return sorted(list(common_cities))
 
+# locations: The locations to check
+# zipcodes: The zipcodes to return the lat/lon for
+# Returns: A list of strings corresponding to each zipcode in zipcodes, where the string is the lat/lon of the zipcode
 def latLon(locations, zipcodes):
     zipcodes_found = {}
 
