@@ -69,3 +69,25 @@ class Location(Record):
         
         return self.estimated_population < other.estimated_population
     
+# locations: The locations to check
+# states: The states to find common city names between. Can be a list or set, though set is preferred for speed.
+def commonCityNames(locations, states):
+    # Map of cities to (set of) states
+    city_dict = {}
+    common_cities = set()
+    for location in locations:
+        city = location.city
+        if location.state in states:
+            if city not in city_dict:
+                city_dict[city] = set()
+            
+            city_dict[city].add(location.state)
+
+            # Check if the city's states match the states passed to the function
+            # Since we're only adding states from the passed set, the length is more than enough to compare
+            if len(city_dict[city]) == len(states):
+                common_cities.add(city)
+    
+    # Return common cities in a sorted list
+    return sorted(list(common_cities))
+
