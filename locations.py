@@ -110,6 +110,9 @@ def latLon(locations, zipcodes):
     # in the list 
     return [zipcodes_found[zip] for zip in zipcodes]
 
+# locations: The locations to check
+# cities: The cities to return the states for
+# Returns: A list of strings corresponding to each city in cities, where the string is each state having said city in alphabetical order
 def cityStates(locations, cities):
     city_dict = {}
 
