@@ -71,6 +71,7 @@ class Location(Record):
     
 # locations: The locations to check
 # states: The states to find common city names between. Can be a list or set, though set is preferred for speed.
+# Returns: The cities common to all states passed, in sorted order
 def commonCityNames(locations, states):
     # Map of cities to (set of) states
     city_dict = {}
