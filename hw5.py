@@ -1,4 +1,6 @@
+# // => I’m competing for BONUS Points <=
 import time
+from locations import Location
 
 """
   Homework#5
@@ -12,6 +14,14 @@ import time
   your work.
 """
 
+# Read a file line by line
+# file: Path to file
+# preprocess: Function to preprocess each line; strips whitespace by default.
+def readFile(file, preprocess = lambda line: line.strip()):
+    with open(file, 'r') as f:
+        for line in f:
+            yield preprocess(line)
+
 if __name__ == "__main__": 
     start_time = time.perf_counter()  # Do not remove this line
     '''
@@ -19,9 +29,14 @@ if __name__ == "__main__":
     -----------------------------------------------------------
     '''
 
-    
-    # write your code here
+    # for line in readFile("zipcodes.txt"):
+    #     if first:
+    #         first = False
+    #         continue
 
+    #     columns = line.split("\t")
+    #     # print(columns)
+    #     print(Location(*columns))
 
     '''
     Inside the __main__, do not add any codes after this line.
