@@ -91,3 +91,22 @@ def commonCityNames(locations, states):
     # Return common cities in a sorted list
     return sorted(list(common_cities))
 
+def latLon(locations, zipcodes):
+    zipcodes_found = {}
+
+    for location in locations:
+        zip = location.zipcode
+        # Don't care about this zipcode, or already found it
+        if zip not in zipcodes or zip in zipcodes_found:
+            continue
+        
+        zipcodes_found[zip] = f"{location.lat} {location.long}"
+
+        # Short circuit if we found all the zipcodes
+        if len(zipcodes_found) == len(zipcodes):
+            break
+    
+    # Return the values from zipcodes_found in the order the zipcodes were provided
+    # in the list 
+    return [zipcodes_found[zip] for zip in zipcodes]
+
