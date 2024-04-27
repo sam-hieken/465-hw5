@@ -1,6 +1,6 @@
 # // => I’m competing for BONUS Points <=
 import time
-from locations import Location
+from locations import *
 
 """
   Homework#5
@@ -22,6 +22,11 @@ def readFile(file, preprocess = lambda line: line.strip()):
         for line in f:
             yield preprocess(line)
 
+def writeFile(file, lines):
+    with open(file, 'w') as f:
+        for line in lines:
+            f.write(line + "\n")
+
 if __name__ == "__main__": 
     start_time = time.perf_counter()  # Do not remove this line
     '''
@@ -29,14 +34,21 @@ if __name__ == "__main__":
     -----------------------------------------------------------
     '''
 
-    # for line in readFile("zipcodes.txt"):
-    #     if first:
-    #         first = False
-    #         continue
+    lines = readFile("zipcodes.txt")
+    next(lines) # Skip the first line
+    locations = [Location(*(line.split("\t"))) for line in lines]
 
-    #     columns = line.split("\t")
-    #     # print(columns)
-    #     print(Location(*columns))
+    states = [state for state in readFile("states.txt") if len(state) > 0]
+    cities = commonCityNames(locations, states)
+    writeFile("CommonCityNames.txt", cities)
+
+    zips = [zipcode for zipcode in filter(lambda zipcode: len(zipcode) > 0, readFile("zips.txt"))]
+    latLons = latLon(locations, zips)
+    writeFile("LatLon.txt", latLons)
+
+    cities = [city.lower() for city in readFile("cities.txt") if len(city) > 0]
+    cityStates = cityStates(locations, cities)
+    writeFile("CityStates.txt", cityStates)
 
     '''
     Inside the __main__, do not add any codes after this line.
@@ -46,5 +58,3 @@ if __name__ == "__main__":
     # Calculate the runtime in milliseconds
     runtime_ms = (end_time - start_time) * 1000
     print(f"The runtime of the program is {runtime_ms} milliseconds.")  
-    
-
