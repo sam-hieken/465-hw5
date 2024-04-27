@@ -110,3 +110,17 @@ def latLon(locations, zipcodes):
     # in the list 
     return [zipcodes_found[zip] for zip in zipcodes]
 
+def cityStates(locations, cities):
+    city_dict = {}
+
+    for location in locations:
+        city = location.city.lower()
+        if city not in cities:
+            continue
+
+        elif city not in city_dict:
+            city_dict[city] = set()
+        
+        city_dict[city].add(location.state)
+    
+    return [" ".join(sorted(list(city_dict[city]))) for city in cities]
